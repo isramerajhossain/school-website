@@ -117,10 +117,60 @@
                 <li>Transportation</li>
             </ul>
         </section>
+        <section class="gallery-section">
+  <h2>School Photo Gallery</h2>
+
+  <input type="file" id="photoInput" accept="image/*" multiple>
+  <button onclick="uploadPhotos()">Upload Photo</button>
+
+  <div id="gallery"></div>
+</section>
+
+<style>
+.gallery-section{
+  padding:30px;
+  text-align:center;
+  background:#f5f5f5;
+}
+#gallery{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:20px;
+}
+#gallery img{
+  width:180px;
+  height:180px;
+  object-fit:cover;
+  margin:10px;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+</style>
+
+<script>
+function uploadPhotos(){
+  const input = document.getElementById("photoInput");
+  const gallery = document.getElementById("gallery");
+
+  for(let i=0;i<input.files.length;i++){
+    const file = input.files[i];
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+      const img = document.createElement("img");
+      img.src = e.target.result;
+      gallery.appendChild(img);
+    }
+    reader.readAsDataURL(file);
+  }
+}
+</script>
     </main>
     <footer>
         <p>&copy; 2024 The Reyan International Public School. All rights reserved.</p>
     </footer>
 </body>
 </html>
+
 
